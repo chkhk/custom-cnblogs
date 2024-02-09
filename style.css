@@ -633,7 +633,7 @@ a.c_b_p_desc_readmore {
   position: sticky;
   background-color: var(--background);
   box-shadow: 0 0 1px 0px var(--text), 0 5px 8px 0 var(--shadow2);
-  top: 0px;
+  top: 10px;
   z-index: 15;
 }
 
@@ -1575,6 +1575,7 @@ input.btn_my_zzk:hover {
   bottom: 15px;
   display: flex;
   padding-left: 1px;
+  flex-wrap: wrap;
 }
 
 .feedbackManage .comment_actions a {
@@ -1589,6 +1590,7 @@ input.btn_my_zzk:hover {
   text-align: center;
   z-index: 0;
   margin-left: -1px;
+  white-space: nowrap;
 }
 
 .feedbackManage .comment_actions a:first-child::before {
@@ -1805,6 +1807,8 @@ input.btn_my_zzk:hover {
 }
 
 /* 移动端适配 */
+
+/* 媒体查询：最小宽度适配 */
 @media screen and (min-width: 1921px) {
   body {
     --main-width: 1480px;
@@ -1812,6 +1816,7 @@ input.btn_my_zzk:hover {
   }
 }
 
+/* 媒体查询：最大宽度限制 */
 @media screen and (max-width: 1280px) {
   #div_digg,
   #green_channel {
@@ -1820,8 +1825,12 @@ input.btn_my_zzk:hover {
 }
 
 @media screen and (max-width: 770px) {
+  #main {
+    flex-wrap: wrap;
+  }
   #main #sideBar {
-    display: none;
+    width: 100%;
+    min-width: 100%;
   }
   #main .forFlow {
     padding-right: 0;
@@ -1861,7 +1870,7 @@ input.btn_my_zzk:hover {
   }
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 770px), (max-height: 450px) {
   body.custom-detail #mainContent .forFlow {
     padding-left: unset;
   }
@@ -1899,14 +1908,51 @@ input.btn_my_zzk:hover {
   } */
 }
 
-@media screen and (max-height: 980px) {
-  #div_digg {
-    top: 50px;
+/* 媒体查询：最大高度限制 */
+@media screen and (max-height: 840px) {
+  #green_channel {
+    position: static;
+    width: 100%;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    margin: 20px 0;
   }
 }
 @media screen and (max-height: 790px) {
   #div_digg #digg_tips,
   #div_digg #vip_tip {
     display: none;
+  }
+}
+
+/* 复合媒体查询： */
+/* 评论区操作按钮优化 */
+@media screen and (min-width: 770px) and (max-width: 985px),
+  (max-width: 635px) {
+  .comment_vote {
+    padding-top: 52px;
+  }
+  .feedbackManage .comment_actions {
+    bottom: 65px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .comment_vote {
+    padding-top: 62px;
+  }
+
+  .comment_vote a {
+    margin-top: 3px;
+  }
+  .feedbackManage .comment_actions {
+    bottom: 75px;
+  }
+  #blog-comments-placeholder .comment_actions a {
+    padding: 0 15px;
+  }
+  #blog-comments-placeholder .comment_actions a::before {
+    content: '';
   }
 }

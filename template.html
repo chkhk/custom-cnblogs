@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <!-- 以下两段注释包裹的代码分别放入设置中对应的代码框中 -->
+    <!-- 以下注释包裹的代码分别放入设置中对应的代码框中 -->
 
     <!-- 博客侧边栏公告 start -->
     <div id="custom-sidebar" onclick="switchCustomTheme(event)">主题切换</div>
@@ -58,8 +58,19 @@
     </script>
     <!-- 博客侧边栏公告 end -->
 
+    <!-- 页首 HTML 代码 start -->
+    <script>
+      /* 判断是否是加载了默认的 css ，如果加载了则需要删除 */
+      let mainCssLink = document.getElementById('MainCss');
+      if (mainCssLink) {
+        mainCssLink.parentNode.removeChild(mainCssLink);
+      }
+    </script>
+    <!-- 页首 HTML 代码 end -->
+
     <!-- 页脚 HTML 代码 start -->
     <script>
+      /* 判断是否是阅读页 */
       document.getElementById('topics')
         ? document.body.classList.add('custom-detail')
         : document.body.classList.remove('custom-detail');
