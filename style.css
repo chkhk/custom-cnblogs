@@ -1118,6 +1118,20 @@ input.btn_my_zzk:hover {
   font-size: 14px;
 }
 
+#cnblogs_post_body strong {
+  font-weight: bold;
+}
+
+#cnblogs_post_body em {
+  font-style: italic;
+  color: #8e8e8e;
+}
+
+#cnblogs_post_body s {
+  padding: 0 3px;
+  color: #848484;
+}
+
 #cnblogs_post_body li {
   margin: 5px;
   line-height: 1.5;
