@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <!-- 以下两段注释包裹的代码分别放入设置中对应的代码框中 -->
+
+    <!-- 博客侧边栏公告 start -->
+    <div id="custom-sidebar" onclick="switchCustomTheme(event)">主题切换</div>
+    <script>
+      function switchCustomTheme(event) {
+        let ele = document.documentElement;
+
+        let isDark = 'theme' in ele.dataset;
+
+        if (!document.startViewTransition) {
+          isDark ? delete ele.dataset.theme : (ele.dataset.theme = 'dark');
+          return;
+        }
+
+        let x = event.clientX;
+        let y = event.clientY;
+
+        let endRadius = Math.hypot(
+          Math.max(x, innerWidth - x),
+          Math.max(y, innerHeight - y)
+        );
+
+        let dark;
+
+        const transition = document.startViewTransition(() => {
+          dark = !isDark;
+          isDark ? delete ele.dataset.theme : (ele.dataset.theme = 'dark');
+        });
+
+        transition.ready.then(() => {
+          let clipPath = [
+            `circle(0px at ${x}px ${y}px)`,
+            `circle(${endRadius}px at ${x}px ${y}px)`,
+          ];
+          document.documentElement.animate(
+            {
+              clipPath: dark ? [...clipPath].reverse() : clipPath,
+            },
+            {
+              fill: 'forwards',
+              duration: 500,
+              easing: 'ease-in',
+              pseudoElement: dark
+                ? '::view-transition-old(root)'
+                : '::view-transition-new(root)',
+            }
+          );
+        });
+      }
+    </script>
+    <!-- 博客侧边栏公告 end -->
+
+    <!-- 页脚 HTML 代码 start -->
+    <script>
+      document.getElementById('topics')
+        ? document.body.classList.add('custom-detail')
+        : document.body.classList.remove('custom-detail');
+    </script>
+    <!-- 页脚 HTML 代码 end -->
+  </body>
+</html>
