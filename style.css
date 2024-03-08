@@ -1634,11 +1634,12 @@ input.btn_my_zzk:hover {
   margin: 10px 0;
   padding: 10px 2em 5px;
   border-radius: 5px;
+  transition: background-color 0.2s;
 }
-.blog_comment_body:hover {
-  background-color: rgba(220, 220, 220, 0.5);
+.feedbackItem:hover .blog_comment_body {
+  background-color: rgba(220, 220, 220, 0.3);
 }
-:root[data-theme='dark'] .blog_comment_body:hover {
+:root[data-theme='dark'] .feedbackItem:hover .blog_comment_body {
   background-color: rgba(200, 200, 200, 0.1);
 }
 
